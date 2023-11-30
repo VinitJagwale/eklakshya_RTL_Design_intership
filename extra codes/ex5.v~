@@ -1,0 +1,29 @@
+//t flip flop
+module ex4(input t,clk,output q,qb);
+reg q,qb;
+always@(posedge clk)
+begin
+case(t)
+ 1'b0:begin q=1;qb=~q; end
+ 1'b1:begin q=0;qb=~q; end
+endcase
+end
+endmodule
+
+
+
+module tb;
+reg t,clk=1;
+wire q,qb;
+ex5 e3(t,clk,q,qb);
+always #5 clk=~clk;
+initial begin
+$display(" \t\t     T   Q   QB ");
+$monitor($time," %b   %b   %b",t,q,qb);
+#10 t=1'b1;
+#10 t=1'b0;
+end
+initial begin
+#40;$finish;
+end
+endmodule

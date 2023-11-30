@@ -1,0 +1,13 @@
+module arrmul(input [1:0]a,b,output[3:0]s);
+wire c1,c2,s1,c3;
+reg cin=0;
+fa f0(a[1],b[0],cin,s1,c1);
+fa f1(a[0],b[0],cin,s[0],c2);
+fa f2(a[1],b[1],c1,s[2],s[3]);
+fa f3(a[0],b[1],c2,s[1],c3);
+endmodule
+
+module fa(input a,b,cin,output s,cout);
+assign s=a^b^cin;
+assign cout=(a&b)|(a&cin)|(cin&b);
+endmodule

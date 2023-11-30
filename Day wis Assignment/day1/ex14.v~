@@ -1,0 +1,24 @@
+//generate clk and print five product company name on posedge clk
+module ex14;
+reg clk=0;
+always #5 clk=!clk;
+always@(posedge clk)
+begin
+//$monitor( $time," a, b, c, d, e");
+case($time)
+8'd05:$monitor( $time," a");
+8'd15:$monitor( $time," b");
+8'd25:$monitor( $time," c");
+8'd35:$monitor( $time," d");
+8'd45:$monitor( $time," e");
+endcase
+end
+initial begin
+# 50 $finish;
+end
+endmodule
+
+
+
+
+

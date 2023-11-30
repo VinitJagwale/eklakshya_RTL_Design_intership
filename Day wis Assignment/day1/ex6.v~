@@ -1,0 +1,20 @@
+module ex6;
+reg [4:0] a,b,temp;
+reg clk=1;
+always #2 clk=~clk;
+initial begin
+ a=14;
+ b=12;
+@(posedge clk)
+  begin 
+     temp=a;
+     a=b;
+     b=temp;
+     $display($time," a:%d , b:%d",a,b);
+  end
+end
+initial begin
+#20; $finish ;
+end
+endmodule
+

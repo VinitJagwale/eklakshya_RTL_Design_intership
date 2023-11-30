@@ -1,0 +1,11 @@
+module tb;
+reg [1:0]a,b;
+wire [3:0]s;
+
+arrmul a1(a,b,s);
+initial begin
+$display("\t\t\t A     B      Y");
+$monitor($time,"  %d    %d     %d",a,b,s);
+#0 a=2'd2;b=2'd3;
+end
+endmodule

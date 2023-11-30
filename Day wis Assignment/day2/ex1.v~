@@ -1,0 +1,8 @@
+//two reg variables one uninitialized and other initialized
+module ex1;
+reg R ,R1;
+initial R=0;
+initial begin
+$display("initialized reg : %b & uninitialied reg : %b",R,R1);
+end
+endmodule

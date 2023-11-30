@@ -1,0 +1,17 @@
+module inv(input in,output out);
+supply1 a;
+supply0 b;
+pmos(out,a,in);
+nmos(out,b,in);
+endmodule
+
+module tb;
+reg in;
+wire out;
+inv i1(in,out);
+initial begin
+$monitor($time,"\nin = %b  out = %b\n",in,out);
+#10 in=1;
+#10 in=0;
+end 
+endmodule

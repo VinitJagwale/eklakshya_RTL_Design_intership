@@ -1,0 +1,14 @@
+//-------------------------------Test Bench------------------------------------//
+module tb;
+  reg [3:0] a,b;
+  wire [7:0] z;
+  vm4bit v1(a,b,z);
+  initial begin
+    $display("\t\t\t  A     B      Ans");
+    $monitor($time,"    %d   %d   %d",a,b,z);
+    #0  a=4'd7; b=4'd3;
+    #10 a=4'd3; b=4'd3;
+    #10 a=4'd8; b=4'd7;
+    #10 a=4'd5; b=4'd10;
+  end 
+endmodule

@@ -1,0 +1,54 @@
+///----------MAC---------------///
+
+
+module mac(input clk,rst,input [31:0] x,y,output  [63:0]acc);
+wire[63:0] w1,x1;
+reg [31:0] in1,in2;
+//vm32bit v01(in1,in2,w1);
+assign w1=in1*in2;
+assign acc=w1+x1;
+pipo p1(acc,clk,rst,x1);
+always@(posedge clk)
+begin
+in1=x;in2=y;
+ if(rst)begin in1<=32'd0;in2<=32'd0;end
+end
+endmodule
+
+
+//-----------------PIPO--------------------//
+
+module pipo(input[63:0]rin,input clk,rst,output reg [63:0]rout);
+always@(posedge clk )
+ begin
+  if(rst) rout<=64'd0;
+  else rout<=rin;
+ end
+endmodule
+
+
+
+
+
+
+///--------------------testBench------------------///
+module tb;
+reg clk,rst;
+reg [31:0]x,y;
+wire [63:0]acc;
+always #1 clk=~clk;
+mac m1(clk,rst,x,y,acc);
+initial begin
+clk=1'b1;
+$monitor($time," rst=%d x=%0d  y=%0d  acc=%0d",rst,x,y,acc);
+#2 rst=1; x=32'd5 ;y=32'd1;
+#2 rst=0; x=32'd5 ;y=32'd2;
+#2 rst=0; x=32'd5 ;y=32'd3;
+#2 rst=1; //x=32'd5 ;y=32'd1;
+#2 rst=0; x=32'd5 ;y=32'd1;
+#2 rst=0; x=32'd5 ;y=32'd3;
+#2 rst=0; x=32'd5 ;y=32'd1;
+#2 rst=0; x=32'd5 ;y=32'd2;
+ $finish;
+end
+endmodule

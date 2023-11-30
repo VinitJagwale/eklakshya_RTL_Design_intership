@@ -1,0 +1,7 @@
+//design the expression using WOR
+module ex4(input a,b,output f);
+wor f;
+assign f=a&b;
+assign f=~a&~b;
+
+endmodule

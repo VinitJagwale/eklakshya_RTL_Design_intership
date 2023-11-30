@@ -1,0 +1,35 @@
+//SR flip flop
+module ex2(input [1:0]sr,input clk,output q,qb);
+reg q,qb;
+always@(posedge clk)
+begin
+case(sr)
+2'b00 :begin q=q;qb=~q; end
+2'b01 :begin q=0;qb=~q; end
+2'b10 :begin q=1;qb=~q; end
+default:begin q=1'bx;qb=1'bx; end
+endcase
+end
+endmodule
+
+
+
+
+module tb;
+reg [1:0]sr;
+reg clk=1;
+wire q,qb;
+ex2 i1(sr,clk,q,qb);
+always #5 clk=~clk;
+initial begin
+$display(" \t\t     SR   Q   QB ");
+$monitor($time," %b   %b   %b",sr,q,qb);
+#10 sr=2'b01;
+#10 sr=2'b00;
+#10 sr=2'b10;
+#10 sr=2'b11;
+end
+initial begin
+#80;$finish;
+end
+endmodule

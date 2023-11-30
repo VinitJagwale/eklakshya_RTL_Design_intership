@@ -1,0 +1,15 @@
+//perform the give data
+module ex7(input[3:0] a,b,output[3:0]o0,o1,o2,o3,o4);
+assign a=4'b1001;
+assign b=4'b1010;
+
+assign o0=a+b;
+assign o1=a-b;
+assign o2=a*b;
+assign o3=a/b;
+assign o4=a%b;
+
+initial begin
+$monitor("\n (a+b)=%b \n(a-b)=%b \n(a*b)=%b \n(a/b)=%b \n(a mod b)=%b",o0,o1,o2,o3,o4);
+end
+endmodule
